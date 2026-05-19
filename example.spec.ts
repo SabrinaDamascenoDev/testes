@@ -6,7 +6,7 @@ test.describe('Página Home', () => {
   });
 
   test('deve exibir os metadados e elementos principais corretamente', async ({ page }) => {
-    await expect(page).toHaveTitle('React App');
+    await expect(page).toHaveTitle('Home');
 
     await expect(
       page.getByRole('heading', {
@@ -15,14 +15,14 @@ test.describe('Página Home', () => {
     ).toBeVisible();
 
     await expect(
-      page.getByRole('link', { name: 'Form' })
+      page.locator('#form-link')
     ).toBeVisible();
   });
-
+  
   test('deve redirecionar para a página de formulário ao clicar no link', async ({
     page,
   }) => {
-    await page.getByRole('link', { name: 'Form' }).click();
+    await page.click('#form-link');
 
     await expect(page).toHaveTitle('Form');
   });
@@ -60,16 +60,17 @@ test.describe('Página Formulário', () => {
   });
 
   test('deve adicionar um novo item à lista', async ({ page }) => {
-    const input = page.getByPlaceholder('Enter item');
+    // const input = page.getByPlaceholder('Enter item');
+    // await input.fill('Sabrina');
+    // await page.getByRole('button', { name: 'Add' }).click();
 
-    await input.fill('Sabrina');
+    await page.fill("#item-input", "Sabrina")
+    await page.click("#submit-button")
 
-    await page.getByRole('button', { name: 'Add' }).click();
-
-    const item = page.getByTestId('item').nth(0);
+    const item = page.getByTestId('item').first();
 
     await expect(item).toHaveText('Sabrina');
 
-    await expect(input).toBeEmpty();
+    await expect(page.locator("#item-input")).toBeEmpty();
   });
 });
