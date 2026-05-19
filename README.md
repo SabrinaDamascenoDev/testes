@@ -243,8 +243,3 @@ Além disso:
 - Documentam fluxos críticos da aplicação.
 - Melhoram a qualidade do frontend.
 
----
-
-# 👩‍💻 Autor
-
-Desenvolvido por Sabrina 🚀
