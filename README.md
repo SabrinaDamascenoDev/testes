@@ -112,47 +112,6 @@ await expect(itemsList).toBeEmpty();
 
 Esse tipo de teste evita inconsistências visuais e dados incorretos.
 
----
-
-# 🧠 O Padrão AAA (Arrange, Act, Assert)
-
-Para manter os testes organizados e legíveis, utilizamos o padrão AAA.
-
-## Arrange (Preparar)
-
-Configuração inicial do cenário:
-
-```ts
-await page.goto('http://localhost:3000/form');
-
-const input = page.getByPlaceholder('Enter item');
-```
-
----
-
-## Act (Executar)
-
-Ação executada pelo usuário:
-
-```ts
-await input.fill('Sabrina');
-
-await page.getByRole('button', { name: 'Add' }).click();
-```
-
----
-
-## Assert (Validar)
-
-Verificação do resultado esperado:
-
-```ts
-await expect(item).toHaveText('Sabrina');
-
-await expect(input).toBeEmpty();
-```
-
----
 
 # 📂 Estrutura e Boas Práticas
 
@@ -268,8 +227,6 @@ npx playwright test --debug
 - Playwright
 - React
 - TypeScript
-- HTML
-- CSS
 
 ---
 
